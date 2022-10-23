@@ -14,7 +14,7 @@ while True:
     if tank.battle_end():
         print("Battle over")
         break
-    choice = input("8 - to Straight, 2 - to Back, 4 - to Left, 6 - to Right, 5 - to Shoot, 0 - exit \n")
+    choice = input("management: 8 - to Straight, 6 - to Right, 2 - to Back, 4 - to Left, 5 - to Shoot, 0 - exit \n")
     match choice:
         case "8":
             tank.straight()
