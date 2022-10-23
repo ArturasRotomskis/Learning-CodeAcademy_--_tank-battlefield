@@ -22,7 +22,7 @@ class Tank:
         self.direction = s[0][0]  # North
 
     # --------------------------------------------------------------------
-    # management gear
+    # management gears
     def straight(self):
         self.y += 1
         self.direction = s[0][0]  # North
