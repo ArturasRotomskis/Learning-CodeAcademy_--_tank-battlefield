@@ -9,8 +9,8 @@ from tank import Tank
 tank = Tank()
 
 while True:
-    tank.info()
     tank.battlefield()
+    tank.info()
     if tank.battle_end():
         print("Battle over")
         break
