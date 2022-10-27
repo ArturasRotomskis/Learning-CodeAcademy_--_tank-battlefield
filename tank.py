@@ -2,8 +2,11 @@ from random import randint
 
 #  changeable battlefield measurements
 battlefield_setting = 20
-t = int(battlefield_setting/2)
-s = (["North", "N", "straight"], ["East", "E", "right"], ["South", "S", "back"], ["West", "W", "left"])
+b = int(battlefield_setting/2)
+d = (["North", "N", "straight"],
+     ["East", "E", "right"],
+     ["South", "S", "back"],
+     ["West", "W", "left"])
 
 
 class Tank:
@@ -12,70 +15,70 @@ class Tank:
         self.y = 0
         self.hits = 0
         self.points = 0
-        self.foe1_x = randint(-t, t)
-        self.foe1_y = randint(-t, t)
-        self.foe2_x = randint(-t, t)
-        self.foe2_y = randint(-t, t)
-        self.foe3_x = randint(-t, t)
-        self.foe3_y = randint(-t, t)
-        self.shots = {s[0][0]: 0, s[1][0]: 0, s[2][0]: 0, s[3][0]: 0}
-        self.direction = s[0][0]  # North
+        self.foe1_x = randint(-b, b)
+        self.foe1_y = randint(-b, b)
+        self.foe2_x = randint(-b, b)
+        self.foe2_y = randint(-b, b)
+        self.foe3_x = randint(-b, b)
+        self.foe3_y = randint(-b, b)
+        self.shots = {d[0][0]: 0, d[1][0]: 0, d[2][0]: 0, d[3][0]: 0}  # replace dic list
+        self.direction = d[0][0]  # North
 
     # --------------------------------------------------------------------
     # management gears
     def straight(self):
         self.y += 1
-        self.direction = s[0][0]  # North
+        self.direction = d[0][0]  # North
         self.points -= 1
 
     def right(self):
         self.x += 1
-        self.direction = s[1][0]  # East
+        self.direction = d[1][0]  # East
         self.points -= 1
 
     def back(self):
         self.y -= 1
-        self.direction = s[2][0]  # South
+        self.direction = d[2][0]  # South
         self.points -= 1
 
     def left(self):
         self.x -= 1
-        self.direction = s[3][0]  # West
+        self.direction = d[3][0]  # West
         self.points -= 1
     # management gear
     # --------------------------------------------------------------------
 
     # a description of the targeting situation ###########################
     def check_shot1(self):
-        if self.x == self.foe1_x and self.direction == s[0][0] and self.y < self.foe1_y:  # North
+        if self.x == self.foe1_x and self.direction == d[0][0] and self.y < self.foe1_y:  # North
             return True
-        if self.y == self.foe1_y and self.direction == s[1][0] and self.x < self.foe1_x:  # East
+        if self.y == self.foe1_y and self.direction == d[1][0] and self.x < self.foe1_x:  # East
             return True
-        if self.x == self.foe1_x and self.direction == s[2][0] and self.y > self.foe1_y:  # South
+        if self.x == self.foe1_x and self.direction == d[2][0] and self.y > self.foe1_y:  # South
             return True
-        if self.y == self.foe1_y and self.direction == s[3][0] and self.x > self.foe1_x:  # West
+        if self.y == self.foe1_y and self.direction == d[3][0] and self.x > self.foe1_x:  # West
             return True
         return False
 
     def check_shot2(self):
-        if self.x == self.foe2_x and self.direction == s[0][0] and self.y < self.foe2_y:  # North
+        if self.x == self.foe2_x and self.direction == d[0][0] and self.y < self.foe2_y:  # North
             return True
-        if self.y == self.foe2_y and self.direction == s[1][0] and self.x < self.foe2_x:  # East
+        if self.y == self.foe2_y and self.direction == d[1][0] and self.x < self.foe2_x:  # East
             return True
-        if self.x == self.foe2_x and self.direction == s[2][0] and self.y > self.foe2_y:  # South
+        if self.x == self.foe2_x and self.direction == d[2][0] and self.y > self.foe2_y:  # South
             return True
-        if self.y == self.foe2_y and self.direction == s[3][0] and self.x > self.foe2_x:  # West
+        if self.y == self.foe2_y and self.direction == d[3][0] and self.x > self.foe2_x:  # West
             return True
         return False
 
     def check_shot3(self):
-        if self.x == self.foe3_x and self.direction == s[0][0] and self.y < self.foe3_y:  # North
+        if self.x == self.foe3_x and self.direction == d[0][0] and self.y < self.foe3_y:  # North
             return True
-        if self.y == self.foe3_y and self.direction == s[1][0] and self.x < self.foe3_x:  # East
+        if self.y == self.foe3_y and self.direction == d[1][0] and self.x < self.foe3_x:  # East
             return True
-        if self.x == self.foe3_x and self.direction == s[2][0] and self.y > self.foe3_y:  # South
+        if self.x == self.foe3_x and self.direction == d[2][0] and self.y > self.foe3_y:  # South
             return True
-        if self.y == self.foe3_y and self.direction == s[3][0] and self.x > self.foe3_x:  # West
+        if self.y == self.foe3_y and self.direction == d[3][0] and self.x > self.foe3_x:  # West
             return True
         return False
 
@@ -87,29 +90,29 @@ class Tank:
             print("\033[0m")
             self.hits += 1
             self.points += 5
-            self.foe1_x = randint(-t, t)
-            self.foe1_y = randint(-t, t)
+            self.foe1_x = randint(-b, b)
+            self.foe1_y = randint(-b, b)
         elif self.check_shot2():
             print("\033[1;30;103m             second Foe HIT !!!!      ")  # yellow color background
             print("\033[0m")
             self.hits += 1
             self.points += 5
-            self.foe2_x = randint(-t, t)
-            self.foe2_y = randint(-t, t)
+            self.foe2_x = randint(-b, b)
+            self.foe2_y = randint(-b, b)
         elif self.check_shot3():
             print("\033[1;30;104m            third Foe   HIT !!!!     ")  # blue color background
             print("\033[0m")
             self.hits += 1
             self.points += 5
-            self.foe3_x = randint(-t, t)
-            self.foe3_y = randint(-t, t)
+            self.foe3_x = randint(-b, b)
+            self.foe3_y = randint(-b, b)
 
     # --------------------------------------------------------------------
     # battlefield
     def battlefield(self):
         # drawing y-axis frontend
-        for y in range(-t, t+1)[::-1]:
-            for x in range(-t, t+1):
+        for y in range(-b, b+1)[::-1]:
+            for x in range(-b, b+1):
                 # drawing x-axis frontend
                 if x == self.x and y == self.y:  # main object
                     print("\033[1;100;38;2;13;7;7m X \033[0m", end="")
@@ -138,7 +141,7 @@ class Tank:
     def info(self):
         print(f"Tank position -- x: {self.x}, y: {self.y}, direction: {self.direction}, "
               f"shots: {sum(self.shots.values())}")
-        print(f"First foe position -- x: {self.foe1_x}, y: {self.foe1_y}")
-        print(f"Second foe position -- x: {self.foe2_x}, y: {self.foe2_y}")
-        print(f"Third foe position -- x: {self.foe3_x}, y: {self.foe3_y}")
+        print(f"First enemy position -- x: {self.foe1_x}, y: {self.foe1_y}")
+        print(f"Second enemy position -- x: {self.foe2_x}, y: {self.foe2_y}")
+        print(f"Third enemy position -- x: {self.foe3_x}, y: {self.foe3_y}")
         print(f"hits: {self.hits}, points: {self.points}")
